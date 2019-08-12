@@ -1,0 +1,88 @@
+@font-face {
+    font-family: "Haas Grot Text R Web";
+    src: url("https://static.zipmoney.com.au/styles/fonts/NeueHaasGrot/NeueHaasGrotTextRound-55Roman-Web.eot");
+    src: url("https://static.zipmoney.com.au/styles/fonts/NeueHaasGrot/NeueHaasGrotTextRound-55Roman-Web.eot?#iefix") format("embedded-opentype"), url("https://static.zipmoney.com.au/styles/fonts/NeueHaasGrot/NeueHaasGrotTextRound-55Roman-Web.woff2") format("woff2"), url("https://static.zipmoney.com.au/styles/fonts/NeueHaasGrot/NeueHaasGrotTextRound-55Roman-Web.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+@font-face {
+    font-family: "Haas Grot Text R Web";
+    src: url("https://static.zipmoney.com.au/styles/fonts/NeueHaasGrot/NeueHaasGrotTextRound-65Medium-Web.eot");
+    src: url("https://static.zipmoney.com.au/styles/fonts/NeueHaasGrot/NeueHaasGrotTextRound-65Medium-Web.eot?#iefix") format("embedded-opentype"), url("https://static.zipmoney.com.au/styles/fonts/NeueHaasGrot/NeueHaasGrotTextRound-65Medium-Web.woff2") format("woff2"), url("https://static.zipmoney.com.au/styles/fonts/NeueHaasGrot/NeueHaasGrotTextRound-65Medium-Web.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+@font-face {
+    font-family: "Haas Grot Disp R Web";
+    src: url("https://static.zipmoney.com.au/styles/fonts/NeueHaasGrot/NeueHaasGrotDispRound-75Bold-Web.eot");
+    src: url("https://static.zipmoney.com.au/styles/fonts/NeueHaasGrot/NeueHaasGrotDispRound-75Bold-Web.eot?#iefix") format("embedded-opentype"), url("https://static.zipmoney.com.au/styles/fonts/NeueHaasGrot/NeueHaasGrotDispRound-75Bold-Web.woff2") format("woff2"), url("https://static.zipmoney.com.au/styles/fonts/NeueHaasGrot/NeueHaasGrotDispRound-75Bold-Web.woff") format("woff");
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+/* page 1 */
+
+#payment-show {
+    font-family: "Haas Grot Text R Web";
+    font-weight: 400;
+    letter-spacing: .01em;
+    font-kerning: none;
+}
+
+#payment-show input {
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    border-width: 1px;
+    border-color: rgba(165,166,169,1);
+
+    outline: 0;
+
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+
+    -webkit-appearance: textfield;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+}
+
+#payment-show input.error {
+    border-color: rgb(251,95,92);
+    -webkit-box-shadow: 0 0 6px #f8b9b7;
+    -moz-box-shadow: 0 0 6px #f8b9b7;
+    box-shadow: 0 0 6px #f8b9b7;
+}
+
+
+
+/* overrides */
+#payment-show.v2 input.payment-input, body.payment input.payment-input {
+    height: 1.8rem;
+}
+
+#payment-show .alert {
+    display: none !important;
+}
+
+/* result page */
+#payment-result {
+    background: url(https://static.zipmoney.com.au/zm/spinner.gif) no-repeat;
+    background-position: center;
+}
+
+#payment-result #spinner {
+    display: none !important;
+}
+
+#payment-result h3 {
+    display: none !important;
+}
