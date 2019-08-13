@@ -13,15 +13,20 @@
     />
     <link
       rel="stylesheet"
+      media="screen"
+      href="/stylesheets/style.css"
+    />
+    <link
+      rel="stylesheet"
+      media="screen"
+      href="/stylesheets/pure.material.css"
+    />
+    <link
+      rel="stylesheet"
       media="all"
       href="/stylesheets/application.css"
     />
     <script src="/javascripts/application.js"></script>
-    <link
-      rel="stylesheet"
-      media="screen"
-      href="/stylesheets/hpp.fz.v1.css"
-    />
   </head>
   <body class="payment v2 iframe" id="payment-show">
     <script>
@@ -49,142 +54,125 @@
     </script>
 
     <div class="container">
-      <div class="row-fluid">
-        <div class="row-fluid">
-          <div class="span4 push4 offset4" style="padding: 0 10px;">
-            <form
-              id="payment-form"
-              class="form-vertical"
-              target="_self"
-              data-ajax="false"
-              action="/v2/TESTzipmoney/6e52c121-ebe9-4bb8-ada1-c20f1cbe8829/AUD/100/db19e30e52653afc4827911c03a85dea?iframe=true&amp;l=v2&amp;layout=v2&amp;postmessage=true&amp;return_target=_self&amp;show_email=false&amp;show_extras=false&amp;tokenize_only=true"
-              accept-charset="UTF-8"
-              method="post"
-            >
-              <input name="utf8" type="hidden" value="&#x2713;" /><input
-                type="hidden"
-                name="authenticity_token"
-                value="c2IzaaX4/Z5TISdC/fSB0W4wN9gq7RiaL62fAJOorCmVBuSpMIIEPnV41ym2xDMqaEL0O3TbBzGEsGe4d2vGTg=="
-              /><input type="hidden" name="pmnts_id" id="pmnts_id" />
-              <input
-                type="hidden"
-                name="card_types"
-                id="card_types"
-                value="VISA,MasterCard"
-              />
-              <input
-                type="hidden"
-                name="css"
-                id="css"
-                value="https://static.zipmoney.com.au/hpp/hpp.fz.v1.css"
-              />
-              <input
-                type="hidden"
-                name="css_signature"
-                id="css_signature"
-                value="21583f9f9c5b9e98460739d5dd990273"
-              />
-              <div id="card">
-                <fieldset>
-                  <div class="control-group">
-                    <label
-                      class="control-label"
-                      for="payment_request_card_holder"
-                      >Card Holder Name</label
-                    >
-                    <div class="controls">
+      <div class="row">
+        <div style="padding: 0 10px;">
+          <form
+            id="payment-form"
+            target="_self"
+            data-ajax="false"
+            action="/v2/TESTzipmoney/6e52c121-ebe9-4bb8-ada1-c20f1cbe8829/AUD/100/db19e30e52653afc4827911c03a85dea?iframe=true&amp;l=v2&amp;layout=v2&amp;postmessage=true&amp;return_target=_self&amp;show_email=false&amp;show_extras=false&amp;tokenize_only=true"
+            accept-charset="UTF-8"
+            method="post"
+          >
+            <input name="utf8" type="hidden" value="&#x2713;" /><input
+              type="hidden"
+              name="authenticity_token"
+              value="c2IzaaX4/Z5TISdC/fSB0W4wN9gq7RiaL62fAJOorCmVBuSpMIIEPnV41ym2xDMqaEL0O3TbBzGEsGe4d2vGTg=="
+            /><input type="hidden" name="pmnts_id" id="pmnts_id" />
+            <input
+              type="hidden"
+              name="card_types"
+              id="card_types"
+              value="VISA,MasterCard"
+            />
+            <input
+              type="hidden"
+              name="css"
+              id="css"
+              value="https://static.zipmoney.com.au/hpp/hpp.fz.v1.css"
+            />
+            <input
+              type="hidden"
+              name="css_signature"
+              id="css_signature"
+              value="21583f9f9c5b9e98460739d5dd990273"
+            />
+            <div id="card">
+              <fieldset>
+                <div class="control-group">
+                  <div class="controls control-container">
+                    <label class="pure-material-textfield-outlined">
                       <input
-                        class="required payment-input card-holder"
+                        placeholder=" "
+                        class="required card-holder"
                         autocomplete="cc-name"
                         title="Please enter a valid card holder name"
                         maxlength="50"
-                        size="50"
-                        type="text"
                         name="payment_request[card_holder]"
                         id="payment_request_card_holder"
                       />
-                    </div>
+                      <span>Card holder name</span>
+                    </label>
                   </div>
-                  <div class="control-group">
-                    <label
-                      class="control-label"
-                      for="payment_request_card_number"
-                      >Card Number</label
-                    >
-                    <div class="controls">
+                </div>
+                <div class="control-group">
+                  <div class="controls control-container">
+                    <label class="pure-material-textfield-outlined">
                       <input
-                        class="required payment-input card-type card-number card-number-logo"
+                        placeholder=" "
+                        class="required card-type card-number card-number-logo"
                         autocomplete="cc-number"
                         minlength="13"
                         maxlength="19"
-                        type="tel"
-                        size="19"
                         name="payment_request[card_number]"
                         id="payment_request_card_number"
                       />
+                      <span>Card number</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="control-group payment_form-mh">
+                  <div class="control-container-flex">
+                    <div class="two-column-row">
+                          <div id="expiry-date">
+                            <label class="pure-material-textfield-outlined">
+                              <input
+                                placeholder=" "
+                                class="expiry-date"
+                                required="required"
+                                data-mask="99/999?9?"
+                                autocomplete="cc-exp"
+                                title="Please enter a valid expiry date"
+                                name="payment_request[expiry_date]"
+                                id="payment_request_expiry_date"
+                              />
+                              <span>Expiry</span>
+                            </label>
+                          </div>
+                          <div id="security-code">
+                            <label class="pure-material-textfield-outlined">
+                              <input
+                                placeholder=" "
+                                class="security-code"
+                                autocomplete="cc-csc"
+                                required="required"
+                                title="Please enter a valid security code (CVV)"
+                                name="payment_request[security_code]"
+                                id="payment_request_security_code"
+                              />
+                              <span>CVV</span>
+                            </label>
+                          </div>
                     </div>
                   </div>
-                  <div class="control-group payment_form-mh">
-                    <div class="pull-left">
-                      <label
-                        class="control-label"
-                        for="payment_request_expiry_date"
-                        >Expiry Date</label
-                      >
-                      <div class="controls">
-                        <input
-                          placeholder="MM/YYYY"
-                          class="payment-input input-small expiry-date"
-                          type="tel"
-                          required="required"
-                          data-mask="99/999?9?"
-                          autocomplete="cc-exp"
-                          title="Please enter a valid expiry date"
-                          name="payment_request[expiry_date]"
-                          id="payment_request_expiry_date"
-                        />
-                      </div>
-                    </div>
-                    <div class="pull-right" id="security-code">
-                      <label
-                        class="control-label"
-                        for="payment_request_security_code"
-                        >Security Code</label
-                      >
-                      <div class="controls">
-                        <input
-                          class="number payment-input security-code"
-                          minlength="3"
-                          maxlength="3"
-                          size="5"
-                          type="tel"
-                          autocomplete="cc-csc"
-                          required="required"
-                          title="Please enter a valid security code (CVV)"
-                          name="payment_request[security_code]"
-                          id="payment_request_security_code"
-                        />
-                      </div>
-                    </div>
+                </div>
+                <div class="control-group">
+                  <div class="surcharge-enabled display-none">
+                    <span class="surcharge-description"></span>
+                    <p>
+                      Surcharged applied:
+                      <span class="surcharge-amount"></span>
+                    </p>
+                    <p class="total">
+                      TOTAL:
+                      <span class="new-total-amount"></span>
+                    </p>
                   </div>
-                  <div class="control-group">
-                    <div class="surcharge-enabled display-none">
-                      <span class="surcharge-description"></span>
-                      <p>
-                        Surcharged applied:
-                        <span class="surcharge-amount"></span>
-                      </p>
-                      <p class="total">
-                        TOTAL:
-                        <span class="new-total-amount"></span>
-                      </p>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                </fieldset>
-              </div>
-            </form>
-          </div>
+                  <div class="clearfix"></div>
+                </div>
+              </fieldset>
+            </div>
+          </form>
         </div>
       </div>
     </div>

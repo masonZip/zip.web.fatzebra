@@ -1,8 +1,24 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+#payment_request_card_holder,
+#payment_request_card_number {
+  min-width: 350px;
 }
 
-a {
-  color: #00B7FF;
+#payment_request_expiry_date,
+#payment_request_security_code {
+  width: 160px !important;
+}
+
+.two-column-row {
+  display: flex;
+  width: 350px;
+  justify-content: space-between;
+}
+
+.control-container {
+  text-align: center;
+}
+
+.control-container-flex {
+  display: flex;
+  justify-content: center;
 }
