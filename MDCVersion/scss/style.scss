@@ -1,0 +1,53 @@
+@import "@material/textfield/mdc-text-field";
+@import "@material/textfield/icon/mdc-text-field-icon";
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.form-wrapper {
+  padding: 32px;
+  max-width: 350px;
+}
+
+#payment_request_card_holder,
+#payment_request_card_number {
+  min-width: 350px;
+}
+
+#payment_request_expiry_date,
+#payment_request_security_code {
+  width: 160px !important;
+}
+
+.two-column-row {
+  display: flex;
+  width: 350px;
+  justify-content: space-between;
+}
+
+.control-container {
+  text-align: center;
+}
+
+.control-container-flex {
+  display: flex;
+  justify-content: center;
+}
+
+// Updated original style
+.control-group {
+  margin-bottom: 32px
+}
+
+// From original application.css
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0
+}
+
+.display-none {
+  display: none
+}

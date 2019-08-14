@@ -1,0 +1,29 @@
+{
+  "name": "mdcversion",
+  "version": "1.0.0",
+  "description": "Material design web components for Fatzebar hosted payment page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server",
+    "build": "webpack"
+  },
+  "author": "Mason Hu",
+  "license": "ISC",
+  "dependencies": {
+    "material-components-web": "^3.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^0.28.0",
+    "dart-sass": "^1.17.2",
+    "extract-loader": "^1.0.2",
+    "fibers": "^4.0.0",
+    "file-loader": "^1.1.11",
+    "sass-loader": "^7.1.0",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.4.3"
+  }
+}

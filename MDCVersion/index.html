@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pay Now &mdash; ZIPMONEY PTY LTD</title>
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+      name="viewport"
+    />
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta
+      name="csrf-token"
+      content="pj901Tn8o4uD/FJSNQe3a8dSEk45s26h1OtAnamX4kJAW6MVrIZaK6Wlojl+NwWQwSDRrWeFcQp/9rglTVSIJQ=="
+    />
+    <link rel="shortcut icon" href="https://material.io/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/assets/style-bundle.css">
+
+    <!-- Origin CSS from hosted payment page
+    <link
+      rel="stylesheet"
+      media="all"
+      href="/assets/application.css"
+    />
+    -->
+    <script src="/assets/application.js"></script>
+
+  </head>
+  <body class="payment v2 iframe" id="payment-show">
+    <script>
+      (function(i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function() {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "//www.google-analytics.com/analytics.js",
+        "ga"
+      );
+      ga("create", "UA-28323186-6", "auto", "pmnts");
+      ga("pmnts.send", "pageview");
+    </script>
+
+    <div class="container">
+        <div class="form-wrapper">
+          <form
+            id="payment-form"
+            target="_self"
+            data-ajax="false"
+            action="/v2/TESTzipmoney/6e52c121-ebe9-4bb8-ada1-c20f1cbe8829/AUD/100/db19e30e52653afc4827911c03a85dea?iframe=true&amp;l=v2&amp;layout=v2&amp;postmessage=true&amp;return_target=_self&amp;show_email=false&amp;show_extras=false&amp;tokenize_only=true"
+            accept-charset="UTF-8"
+            method="post"
+          >
+            <input name="utf8" type="hidden" value="&#x2713;" /><input
+              type="hidden"
+              name="authenticity_token"
+              value="c2IzaaX4/Z5TISdC/fSB0W4wN9gq7RiaL62fAJOorCmVBuSpMIIEPnV41ym2xDMqaEL0O3TbBzGEsGe4d2vGTg=="
+            /><input type="hidden" name="pmnts_id" id="pmnts_id" />
+            <input
+              type="hidden"
+              name="card_types"
+              id="card_types"
+              value="VISA,MasterCard"
+            />
+            <input
+              type="hidden"
+              name="css"
+              id="css"
+              value="https://static.zipmoney.com.au/hpp/hpp.fz.v1.css"
+            />
+            <input
+              type="hidden"
+              name="css_signature"
+              id="css_signature"
+              value="21583f9f9c5b9e98460739d5dd990273"
+            />
+            <div id="card">
+              <fieldset>
+                <div class="control-group">
+                  <div class="controls control-container">
+                    <div class="mdc-text-field mdc-text-field--outlined mdc-card-holder">
+                      <input
+                        type="text"
+                        class="required card-holder mdc-text-field__input"
+                        autocomplete="cc-name"
+                        title="Please enter a valid card holder name"
+                        maxlength="50"
+                        name="payment_request[card_holder]"
+                        id="payment_request_card_holder"
+                      />
+                      <div class="mdc-notched-outline">
+                        <div class="mdc-notched-outline__leading"></div>
+                        <div class="mdc-notched-outline__notch">
+                          <label for="payment_request_card_holder" class="mdc-floating-label">Card holder name</label>
+                        </div>
+                        <div class="mdc-notched-outline__trailing"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="controls control-container">
+                    <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon mdc-card-number">
+                      <input
+                        type="text"
+                        class="required card-type card-number card-number-logo mdc-text-field__input"
+                        autocomplete="cc-number"
+                        minlength="13"
+                        maxlength="19"
+                        name="payment_request[card_number]"
+                        id="payment_request_card_number"
+                      />
+                      <i class="material-icons mdc-text-field__icon mdc-card-number-icon">info_outline</i>
+                      <div class="mdc-notched-outline">
+                        <div class="mdc-notched-outline__leading"></div>
+                        <div class="mdc-notched-outline__notch">
+                          <label for="payment_request_card_number" class="mdc-floating-label">Card number</label>
+                        </div>
+                        <div class="mdc-notched-outline__trailing"></div>
+                      </div>
+                    </div>
+                    <div class="mdc-text-field-helper-line">
+                      <div class="mdc-text-field-helper-text">Please enter a valid card number</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="control-group payment_form-mh">
+                  <div class="two-column-row">
+                    <div id="expiry-date">
+                      <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon mdc-expiry-date">
+                        <input
+                          type="text"
+                          class="expiry-date mdc-text-field__input"
+                          data-mask="99/999?9?"
+                          autocomplete="cc-exp"
+                          title="Please enter a valid expiry date"
+                          name="payment_request[expiry_date]"
+                          id="payment_request_expiry_date"
+                        />
+                        <i class="material-icons mdc-text-field__icon mdc-expiry-date-icon">info_outline</i>
+                        <div class="mdc-notched-outline">
+                          <div class="mdc-notched-outline__leading"></div>
+                          <div class="mdc-notched-outline__notch">
+                            <label for="payment_request_expiry_date" class="mdc-floating-label">Expiry</label>
+                          </div>
+                          <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                      </div>
+                      <div class="mdc-text-field-helper-line">
+                        <div class="mdc-text-field-helper-text">Valid date required</div>
+                      </div>
+                    </div>
+                    <div id="security-code">
+                      <div class="mdc-text-field mdc-text-field--outlined mdc-security-code">
+                        <input
+                          type="text"
+                          onfocus="this.placeholder='3 digit code'"
+                          class="security-code mdc-text-field__input"
+                          autocomplete="cc-csc"
+                          title="Please enter a valid security code (CVV)"
+                          name="payment_request[security_code]"
+                          id="payment_request_security_code"
+                        />
+                        <div class="mdc-notched-outline">
+                          <div class="mdc-notched-outline__leading"></div>
+                          <div class="mdc-notched-outline__notch">
+                            <label for="payment_request_security_code" class="mdc-floating-label">CVV</label>
+                          </div>
+                          <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="surcharge-enabled display-none">
+                    <span class="surcharge-description"></span>
+                    <p>
+                      Surcharged applied:
+                      <span class="surcharge-amount"></span>
+                    </p>
+                    <p class="total">
+                      TOTAL:
+                      <span class="new-total-amount"></span>
+                    </p>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </fieldset>
+            </div>
+          </form>
+      </div>
+    </div>
+
+    <script>
+      window.params = {
+        tokenize_only: "true",
+        postmessage: "true",
+        refetch: "true",
+        hide_button: "true",
+        masterpass: "false",
+        visacheckout: "false",
+        iframe: "true",
+        show_extras: "false",
+        show_email: "false",
+        l: "v2",
+        css: "https://static.zipmoney.com.au/hpp/hpp.fz.v1.css",
+        css_signature: "21583f9f9c5b9e98460739d5dd990273",
+        return_target: "_self",
+        controller: "v2/payment",
+        action: "show",
+        merchant: "TESTzipmoney",
+        invoice: "6e52c121-ebe9-4bb8-ada1-c20f1cbe8829",
+        currency: "AUD",
+        amount: "100",
+        hash: "db19e30e52653afc4827911c03a85dea",
+        merchant_id: "TESTzipmoney",
+        shipping_profiles: ["AU"],
+        layout: "v2"
+      };
+    </script>
+    <script
+      src="https://cdn.pmnts-sandbox.io/fraud/fingerprint/TESTzipmoney.js"
+      async="async"
+    ></script>
+    <script>
+      window.params.surchargeEnabled = false;
+    </script>
+
+    <script src="/assets/bundle.js" async></script>
+  </body>
+</html>
