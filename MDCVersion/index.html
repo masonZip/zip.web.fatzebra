@@ -111,7 +111,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="control-group">
+                <div class="control-group-card">
                   <div class="controls control-container">
                     <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon mdc-card-number">
                       <input
@@ -123,7 +123,10 @@
                         name="payment_request[card_number]"
                         id="payment_request_card_number"
                       />
-                      <i class="material-icons mdc-text-field__icon mdc-card-number-icon">info_outline</i>
+                      <i class="material-icons mdc-text-field__icon mdc-card-number-icon display-none">info_outline</i>
+                      <i class="material-icons mdc-text-field__icon mdc-card-number-img display-none">
+                        <img class="mdc-card-number-icon__img" src='/assets/card-visa-5f8a240d56bca7d914a57f03c7a3be261cae8ee1ef43f444e181a4d1cb47a962.svg' />
+                      </i>
                       <div class="mdc-notched-outline">
                         <div class="mdc-notched-outline__leading"></div>
                         <div class="mdc-notched-outline__notch">
@@ -133,7 +136,7 @@
                       </div>
                     </div>
                     <div class="mdc-text-field-helper-line">
-                      <div class="mdc-text-field-helper-text">Please enter a valid card number</div>
+                      <div class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg mdc-card-help-text">Please enter a valid card number</div>
                     </div>
                   </div>
                 </div>
@@ -146,11 +149,10 @@
                           class="expiry-date mdc-text-field__input"
                           data-mask="99/999?9?"
                           autocomplete="cc-exp"
-                          title="Please enter a valid expiry date"
                           name="payment_request[expiry_date]"
                           id="payment_request_expiry_date"
                         />
-                        <i class="material-icons mdc-text-field__icon mdc-expiry-date-icon">info_outline</i>
+                        <i class="material-icons mdc-text-field__icon mdc-expiry-date-icon display-none">info_outline</i>
                         <div class="mdc-notched-outline">
                           <div class="mdc-notched-outline__leading"></div>
                           <div class="mdc-notched-outline__notch">
@@ -160,20 +162,21 @@
                         </div>
                       </div>
                       <div class="mdc-text-field-helper-line">
-                        <div class="mdc-text-field-helper-text">Valid date required</div>
+                        <div class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg mdc-expiry-date-text">Valid date required</div>
                       </div>
                     </div>
                     <div id="security-code">
-                      <div class="mdc-text-field mdc-text-field--outlined mdc-security-code">
+                      <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon mdc-security-code">
                         <input
                           type="text"
                           onfocus="this.placeholder='3 digit code'"
-                          class="security-code mdc-text-field__input"
+                          class="number security-code mdc-text-field__input"
                           autocomplete="cc-csc"
                           title="Please enter a valid security code (CVV)"
                           name="payment_request[security_code]"
                           id="payment_request_security_code"
                         />
+                        <i class="material-icons mdc-text-field__icon mdc-security-code-icon display-none">info_outline</i>
                         <div class="mdc-notched-outline">
                           <div class="mdc-notched-outline__leading"></div>
                           <div class="mdc-notched-outline__notch">
@@ -181,6 +184,9 @@
                           </div>
                           <div class="mdc-notched-outline__trailing"></div>
                         </div>
+                      </div>
+                      <div class="mdc-text-field-helper-line">
+                        <div class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg mdc-security-code-text">Valid CVV required</div>
                       </div>
                     </div>
                   </div>

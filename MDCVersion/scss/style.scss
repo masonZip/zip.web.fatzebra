@@ -36,6 +36,14 @@
   justify-content: center;
 }
 
+.mdc-card-number-icon__img {
+  height: 24px;
+}
+
+.control-group-card {
+  margin-bottom: 13px
+}
+
 // Updated original style
 .control-group {
   margin-bottom: 32px
@@ -50,4 +58,35 @@ fieldset {
 
 .display-none {
   display: none
+}
+
+.mdc-card-help-text,
+mdc-security-code-text,
+.mdc-expiry-date-text {
+  columns: red;
+}
+
+.card-visa {
+  background-image: url(/assets/card-visa-cb6a36a52c97e6983090e5af531a04575d4caa234ecbfe2a071045cceed76e60.png);
+  background-image: url(/assets/card-visa-5f8a240d56bca7d914a57f03c7a3be261cae8ee1ef43f444e181a4d1cb47a962.svg)
+}
+
+.card-mastercard {
+  background-image: url(/assets/card-mastercard-77f4bf0513351c9f8c80691a9b44afff3851b26f9ac0b3542998724f1062736b.png);
+  background-image: url(/assets/card-mastercard-48906597ac2007ce69cbe6d3a5928e801c83866376b8f881263872a9a978a6b8.svg)
+}
+
+.card-amex {
+  background-image: url(/assets/card-amex-addbce8529e470b48ac00f67038f38611d6559cac127104a054edecc41996bc1.png);
+  background-image: url(/assets/card-amex-cd6ea640c2b86338680a4844efc0b5398125688cc0121728922d57d30b080d7a.svg)
+}
+
+.card-jcb {
+  background-image: url(/assets/card-jcb-2b9d9ad1afeb70a93ee3e33784190267c171d7226239fef1e8d002433be25a79.png);
+  background-image: url(/assets/card-jcb-c0d2fe067ab0e14ed626559b524b6aeea349f66a2f6adbfc9bcb5d1cc761c355.svg)
+}
+
+.card-diners {
+  background-image: url(/assets/card-diners-6ba6f55eabc7aac853d41c1961bc15d2106e40d9f9d8f8540b3c656f2f67ead3.png);
+  background-image: url(/assets/card-diners-6c423134d34cbc014aa7c48b37add2893d0bfe9a782b1d409a24803734973e4f.svg)
 }

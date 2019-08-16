@@ -12937,7 +12937,7 @@ return jQuery;
 
 }(window.jQuery);
 /* =========================================================
- * bootstrap-datepicker.js 
+ * bootstrap-datepicker.js
  * http://www.eyecon.ro/bootstrap-datepicker
  * =========================================================
  * Copyright 2012 Stefan Petre
@@ -12955,11 +12955,11 @@ return jQuery;
  * limitations under the License.
  * ========================================================= */
 
- 
+
 !function( $ ) {
-	
+
 	// Picker object
-	
+
 	var Datepicker = function(element, options){
 		this.element = $(element);
 		this.format = DPGlobal.parseFormat(options.format||this.element.data('date-format')||'mm/dd/yyyy');
@@ -12971,7 +12971,7 @@ return jQuery;
 							});
 		this.isInput = this.element.is('input');
 		this.component = this.element.is('.date') ? this.element.find('.add-on') : false;
-		
+
 		if (this.isInput) {
 			this.element.on({
 				focus: $.proxy(this.show, this),
@@ -12985,7 +12985,7 @@ return jQuery;
 				this.element.on('click', $.proxy(this.show, this));
 			}
 		}
-	
+
 		this.minViewMode = options.minViewMode||this.element.data('date-minviewmode')||0;
 		if (typeof this.minViewMode === 'string') {
 			switch (this.minViewMode) {
@@ -13023,10 +13023,10 @@ return jQuery;
 		this.update();
 		this.showMode();
 	};
-	
+
 	Datepicker.prototype = {
 		constructor: Datepicker,
-		
+
 		show: function(e) {
 			this.picker.show();
 			this.height = this.component ? this.component.outerHeight() : this.element.outerHeight();
@@ -13049,7 +13049,7 @@ return jQuery;
 				date: this.date
 			});
 		},
-		
+
 		hide: function(){
 			this.picker.hide();
 			$(window).off('resize', this.place);
@@ -13064,7 +13064,7 @@ return jQuery;
 				date: this.date
 			});
 		},
-		
+
 		set: function() {
 			var formated = DPGlobal.formatDate(this.date, this.format);
 			if (!this.isInput) {
@@ -13076,7 +13076,7 @@ return jQuery;
 				this.element.prop('value', formated);
 			}
 		},
-		
+
 		setValue: function(newDate) {
 			if (typeof newDate === 'string') {
 				this.date = DPGlobal.parseDate(newDate, this.format);
@@ -13087,7 +13087,7 @@ return jQuery;
 			this.viewDate = new Date(this.date.getFullYear(), this.date.getMonth(), 1, 0, 0, 0, 0);
 			this.fill();
 		},
-		
+
 		place: function(){
 			var offset = this.component ? this.component.offset() : this.element.offset();
 			this.picker.css({
@@ -13095,7 +13095,7 @@ return jQuery;
 				left: offset.left
 			});
 		},
-		
+
 		update: function(newDate){
 			this.date = DPGlobal.parseDate(
 				typeof newDate === 'string' ? newDate : (this.isInput ? this.element.prop('value') : this.element.data('date')),
@@ -13104,7 +13104,7 @@ return jQuery;
 			this.viewDate = new Date(this.date.getFullYear(), this.date.getMonth(), 1, 0, 0, 0, 0);
 			this.fill();
 		},
-		
+
 		fillDow: function(){
 			var dowCnt = this.weekStart;
 			var html = '<tr>';
@@ -13114,7 +13114,7 @@ return jQuery;
 			html += '</tr>';
 			this.picker.find('.datepicker-days thead').append(html);
 		},
-		
+
 		fillMonths: function(){
 			var html = '';
 			var i = 0
@@ -13123,7 +13123,7 @@ return jQuery;
 			}
 			this.picker.find('.datepicker-months td').append(html);
 		},
-		
+
 		fill: function() {
 			var d = new Date(this.viewDate),
 				year = d.getFullYear(),
@@ -13165,7 +13165,7 @@ return jQuery;
 			}
 			this.picker.find('.datepicker-days tbody').empty().append(html.join(''));
 			var currentYear = this.date.getFullYear();
-			
+
 			var months = this.picker.find('.datepicker-months')
 						.find('th:eq(1)')
 							.text(year)
@@ -13174,7 +13174,7 @@ return jQuery;
 			if (currentYear === year) {
 				months.eq(this.date.getMonth()).addClass('active');
 			}
-			
+
 			html = '';
 			year = parseInt(year/10, 10) * 10;
 			var yearCont = this.picker.find('.datepicker-years')
@@ -13189,7 +13189,7 @@ return jQuery;
 			}
 			yearCont.html(html);
 		},
-		
+
 		click: function(e) {
 			e.stopPropagation();
 			e.preventDefault();
@@ -13205,7 +13205,7 @@ return jQuery;
 							case 'next':
 								this.viewDate['set'+DPGlobal.modes[this.viewMode].navFnc].call(
 									this.viewDate,
-									this.viewDate['get'+DPGlobal.modes[this.viewMode].navFnc].call(this.viewDate) + 
+									this.viewDate['get'+DPGlobal.modes[this.viewMode].navFnc].call(this.viewDate) +
 									DPGlobal.modes[this.viewMode].navStep * (target[0].className === 'prev' ? -1 : 1)
 								);
 								this.fill();
@@ -13257,12 +13257,12 @@ return jQuery;
 				}
 			}
 		},
-		
+
 		mousedown: function(e){
 			e.stopPropagation();
 			e.preventDefault();
 		},
-		
+
 		showMode: function(dir) {
 			if (dir) {
 				this.viewMode = Math.max(this.minViewMode, Math.min(2, this.viewMode + dir));
@@ -13270,7 +13270,7 @@ return jQuery;
 			this.picker.find('>div').hide().filter('.datepicker-'+DPGlobal.modes[this.viewMode].clsName).show();
 		}
 	};
-	
+
 	$.fn.datepicker = function ( option, val ) {
 		return this.each(function () {
 			var $this = $(this),
@@ -13289,7 +13289,7 @@ return jQuery;
 		}
 	};
 	$.fn.datepicker.Constructor = Datepicker;
-	
+
 	var DPGlobal = {
 		modes: [
 			{
@@ -15437,13 +15437,13 @@ window.supportsCardType = function(type) {
     }, $.fn.extend({
         caret: function(begin, end) {
             var range;
-            if (0 !== this.length && !this.is(":hidden")) return "number" == typeof begin ? (end = "number" == typeof end ? end : begin, 
+            if (0 !== this.length && !this.is(":hidden")) return "number" == typeof begin ? (end = "number" == typeof end ? end : begin,
             this.each(function() {
-                this.setSelectionRange ? this.setSelectionRange(begin, end) : this.createTextRange && (range = this.createTextRange(), 
-                range.collapse(!0), range.moveEnd("character", end), range.moveStart("character", begin), 
+                this.setSelectionRange ? this.setSelectionRange(begin, end) : this.createTextRange && (range = this.createTextRange(),
+                range.collapse(!0), range.moveEnd("character", end), range.moveStart("character", begin),
                 range.select());
-            })) : (this[0].setSelectionRange ? (begin = this[0].selectionStart, end = this[0].selectionEnd) : document.selection && document.selection.createRange && (range = document.selection.createRange(), 
-            begin = 0 - range.duplicate().moveStart("character", -1e5), end = begin + range.text.length), 
+            })) : (this[0].setSelectionRange ? (begin = this[0].selectionStart, end = this[0].selectionEnd) : document.selection && document.selection.createRange && (range = document.selection.createRange(),
+            begin = 0 - range.duplicate().moveStart("character", -1e5), end = begin + range.text.length),
             {
                 begin: begin,
                 end: end
@@ -15463,9 +15463,9 @@ window.supportsCardType = function(type) {
                 autoclear: $.mask.autoclear,
                 placeholder: $.mask.placeholder,
                 completed: null
-            }, settings), defs = $.mask.definitions, tests = [], partialPosition = len = mask.length, 
+            }, settings), defs = $.mask.definitions, tests = [], partialPosition = len = mask.length,
             firstNonMaskPos = null, $.each(mask.split(""), function(i, c) {
-                "?" == c ? (len--, partialPosition = i) : defs[c] ? (tests.push(new RegExp(defs[c])), 
+                "?" == c ? (len--, partialPosition = i) : defs[c] ? (tests.push(new RegExp(defs[c])),
                 null === firstNonMaskPos && (firstNonMaskPos = tests.length - 1), partialPosition > i && (lastRequiredNonMaskPos = tests.length - 1)) : tests.push(null);
             }), this.trigger("unmask").each(function() {
                 function tryFireCompleted() {
@@ -15520,10 +15520,10 @@ window.supportsCardType = function(type) {
                 function keydownEvent(e) {
                     if (!input.prop("readonly")) {
                         var pos, begin, end, k = e.which || e.keyCode;
-                        oldVal = input.val(), 8 === k || 46 === k || iPhone && 127 === k ? (pos = input.caret(), 
-                        begin = pos.begin, end = pos.end, end - begin === 0 && (begin = 46 !== k ? seekPrev(begin) : end = seekNext(begin - 1), 
-                        end = 46 === k ? seekNext(end) : end), clearBuffer(begin, end), shiftL(begin, end - 1), 
-                        e.preventDefault()) : 13 === k ? blurEvent.call(this, e) : 27 === k && (input.val(focusText), 
+                        oldVal = input.val(), 8 === k || 46 === k || iPhone && 127 === k ? (pos = input.caret(),
+                        begin = pos.begin, end = pos.end, end - begin === 0 && (begin = 46 !== k ? seekPrev(begin) : end = seekNext(begin - 1),
+                        end = 46 === k ? seekNext(end) : end), clearBuffer(begin, end), shiftL(begin, end - 1),
+                        e.preventDefault()) : 13 === k ? blurEvent.call(this, e) : 27 === k && (input.val(focusText),
                         input.caret(0, checkVal()), e.preventDefault());
                     }
                 }
@@ -15531,7 +15531,7 @@ window.supportsCardType = function(type) {
                     if (!input.prop("readonly")) {
                         var p, c, next, k = e.which || e.keyCode, pos = input.caret();
                         if (!(e.ctrlKey || e.altKey || e.metaKey || 32 > k) && k && 13 !== k) {
-                            if (pos.end - pos.begin !== 0 && (clearBuffer(pos.begin, pos.end), shiftL(pos.begin, pos.end - 1)), 
+                            if (pos.end - pos.begin !== 0 && (clearBuffer(pos.begin, pos.end), shiftL(pos.begin, pos.end - 1)),
                             p = seekNext(pos.begin - 1), len > p && (c = String.fromCharCode(k), tests[p].test(c))) {
                                 if (shiftR(p), buffer[p] = c, writeBuffer(), next = seekNext(p), android) {
                                     var proxy = function() {
@@ -15555,7 +15555,7 @@ window.supportsCardType = function(type) {
                 function checkVal(allow) {
                     var i, c, pos, test = input.val(), lastMatch = -1;
                     for (i = 0, pos = 0; len > i; i++) if (tests[i]) {
-                        for (buffer[i] = getPlaceholder(i); pos++ < test.length; ) if (c = test.charAt(pos - 1), 
+                        for (buffer[i] = getPlaceholder(i); pos++ < test.length; ) if (c = test.charAt(pos - 1),
                         tests[i].test(c)) {
                             buffer[i] = c, lastMatch = i;
                             break;
@@ -15565,8 +15565,8 @@ window.supportsCardType = function(type) {
                             break;
                         }
                     } else buffer[i] === test.charAt(pos) && pos++, partialPosition > i && (lastMatch = i);
-                    return allow ? writeBuffer() : partialPosition > lastMatch + 1 ? settings.autoclear || buffer.join("") === defaultBuffer ? (input.val() && input.val(""), 
-                    clearBuffer(0, len)) : writeBuffer() : (writeBuffer(), input.val(input.val().substring(0, lastMatch + 1))), 
+                    return allow ? writeBuffer() : partialPosition > lastMatch + 1 ? settings.autoclear || buffer.join("") === defaultBuffer ? (input.val() && input.val(""),
+                    clearBuffer(0, len)) : writeBuffer() : (writeBuffer(), input.val(input.val().substring(0, lastMatch + 1))),
                     partialPosition ? i : firstNonMaskPos;
                 }
                 var input = $(this), buffer = $.map(mask.split(""), function(c, i) {
@@ -15591,7 +15591,7 @@ window.supportsCardType = function(type) {
                         var pos = checkVal(!0);
                         input.caret(pos), tryFireCompleted();
                     }, 0);
-                }), chrome && android && input.off("input.mask").on("input.mask", androidInputEvent), 
+                }), chrome && android && input.off("input.mask").on("input.mask", androidInputEvent),
                 checkVal();
             });
         }
@@ -16381,7 +16381,7 @@ formatExpiryDate = function(dateVal) {
 
 var initMasks = function() {
   jQuery('[data-mask]').each(function() {
-    jQuery(this).mask(jQuery(this).data('mask'), {autoclear: false});
+    jQuery(this).mask(jQuery(this).data('mask'), {autoclear: false, placeholder: "MM/YYYY"});
   });
 }
 
@@ -16395,15 +16395,31 @@ jQuery(function() {
     // Get the card type
     var input = jQuery(this).val();
     var type = jQuery.payment.cardType(input);
+
     var acceptedTypes = jQuery.map(jQuery("#card_types").val().split(","), function(val, index) {
       return val.toLowerCase();
     });
 
     jQuery(this).removeClass('card-visa card-mastercard card-amex card-jcb card-diners');
-    if (type == null) return;
+    if (type == null) {
+      removeErrorValidationStyleForCard();
+      jQuery('.mdc-card-number-img').addClass('display-none');
+      return;
+    } else {
+      jQuery('.mdc-card-number-img').removeClass('display-none');
+      switch (type)
+      {
+        case 'visa':
+          jQuery('.mdc-card-number-icon__img')[0].src = '/assets/card-visa-5f8a240d56bca7d914a57f03c7a3be261cae8ee1ef43f444e181a4d1cb47a962.svg';
+          break;
+        case 'mastercard':
+          jQuery('.mdc-card-number-icon__img')[0].src = '/assets/card-mastercard-48906597ac2007ce69cbe6d3a5928e801c83866376b8f881263872a9a978a6b8.svg';
+          break
+      }
+    }
     if (acceptedTypes.indexOf(type) < 0) return;
 
-    jQuery(this).addClass('card-icon').addClass('card-' + type.toLowerCase());
+    // jQuery(this).addClass('card-icon').addClass('card-' + type.toLowerCase());
   });
 
   jQuery('form[data-ajax=true]').on('submit', function(e) {
@@ -16796,24 +16812,68 @@ try {
 } catch (e) {
 }
 
+function addErrorValidationStyleForCard() {
+  jQuery('.mdc-card-number-icon').removeClass('display-none');
+  jQuery('.mdc-card-number-img').addClass('display-none');
+}
+
+function removeErrorValidationStyleForCard() {
+  jQuery('.mdc-card-number-icon').addClass('display-none');
+  jQuery('.mdc-card-number-img').removeClass('display-none');
+}
+
+function addErrorValidationStyleForExpiry() {
+  jQuery('.mdc-expiry-date-icon').removeClass('display-none');
+  jQuery('.mdc-expiry-date').addClass('mdc-text-field--invalid')
+}
+
+function removeErrorValidationStyleForExpiry() {
+  jQuery('.mdc-expiry-date-icon').addClass('display-none');
+  jQuery('.mdc-expiry-date').removeClass('mdc-text-field--invalid')
+}
+
+function addErrorValidationStyleForSecurityCode() {
+  jQuery('.mdc-security-code-icon').removeClass('display-none');
+  jQuery('.mdc-security-code').addClass('mdc-text-field--invalid')
+}
+
+function removeErrorValidationStyleForSecurityCode() {
+  jQuery('.mdc-security-code-icon').addClass('display-none');
+  jQuery('.mdc-security-code').removeClass('mdc-text-field--invalid')
+}
+
 jQuery.validator.addMethod('card-holder', function(value, element) {
   return /^[a-z\d\.\-&\s']{1,50}$/i.test(value);
 }, 'Please enter a valid card holder name');
 
 jQuery.validator.addMethod('card-number', function(value, element) {
-  return jQuery.payment.validateCardNumber(value);
+  removeErrorValidationStyleForCard();
+  var isValidCardNumber = jQuery.payment.validateCardNumber(value);
+  if (!isValidCardNumber) {
+    addErrorValidationStyleForCard();
+  }
+  return isValidCardNumber;
 }, 'Please enter a valid card number');
 
 jQuery.validator.addMethod('card-type', function(cardNumber) {
+  removeErrorValidationStyleForCard();
+
   var types = _.map(jQuery("#card_types").val().split(","), function(type) {
     return type.toLowerCase();
   });
   var cardType = jQuery.payment.cardType(cardNumber);
 
-  return _.contains(types, cardType);
+  var isValid = _.contains(types, cardType);
+
+  if (!isValid) {
+    addErrorValidationStyleForCard();
+  }
+
+  return isValid;
 }, 'This card type is not supported');
 
 jQuery.validator.addMethod('security-code', function(value, element) {
+  removeErrorValidationStyleForSecurityCode();
   if (!jQuery(element).prop('required')) {
     return true;
   }
@@ -16823,7 +16883,12 @@ jQuery.validator.addMethod('security-code', function(value, element) {
   var expectedLength = 3;
   if (ccType == 'amex') expectedLength = 4;
 
-  return (value.length == expectedLength);
+  var isValid = (value.length == expectedLength);
+  if (!isValid) {
+    addErrorValidationStyleForSecurityCode();
+  }
+
+  return isValid;
 }, 'Please enter a valid security code.');
 
 var uniqValues = _.compose(_.uniq, _.values);
@@ -16841,6 +16906,7 @@ jQuery.validator.addMethod('validate-expiry-date', function(value, element) {
 }, CARD_HAS_EXPIRED);
 
 jQuery.validator.addMethod('expiry-date', function(value, element) {
+  removeErrorValidationStyleForExpiry();
   var parts = value.split('/');
   var validExp = function(month, year) {
     var currentTime, expiry, _ref;
@@ -16881,7 +16947,12 @@ jQuery.validator.addMethod('expiry-date', function(value, element) {
     expiry.setMonth(expiry.getMonth() + 1, 1);
     return expiry > currentTime;
   };
-  return validExp(parts[0], parts[1]);
+  var isValid = validExp(parts[0], parts[1]);
+  if (!isValid) {
+    addErrorValidationStyleForExpiry();
+  }
+
+  return true;
 }, 'Please enter a valid expiry date');
 
 jQuery(function () {
@@ -16977,24 +17048,24 @@ jQuery(function () {
         return;
       }
 
-      var container = jQuery('.alert.alert-error');
+      // var container = jQuery('.alert.alert-error');
       // Add the container
-      if (container.length == 0) {
-        var container = jQuery("<div class='alert alert-error' style='display: none;'></div>");
-        jQuery('form').before(container);
-        var errContainer = jQuery("<ul></ul>");
-        container.append(errContainer);
-      } else {
-        var errContainer = container.find('ul');
-        errContainer.empty();
-      }
+      // if (container.length == 0) {
+      //   var container = jQuery("<div class='alert alert-error' style='display: none;'></div>");
+      //   jQuery('form').before(container);
+      //   var errContainer = jQuery("<ul></ul>");
+      //   container.append(errContainer);
+      // } else {
+      //   var errContainer = container.find('ul');
+      //   errContainer.empty();
+      // }
 
       var allErrs = uniqValues(currentErrorMap);
-      _.each(allErrs, function(error) {
-        errContainer.append(jQuery("<li>" + error + "</li>"));
-      });
+      // _.each(allErrs, function(error) {
+      //   errContainer.append(jQuery("<li>" + error + "</li>"));
+      // });
 
-      container.fadeIn();
+      // container.fadeIn();
 
       // Send errors via PostMessage
       window.sendPostMessage(
