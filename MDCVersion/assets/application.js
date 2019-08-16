@@ -16402,7 +16402,7 @@ jQuery(function() {
 
     jQuery(this).removeClass('card-visa card-mastercard card-amex card-jcb card-diners');
     if (type == null) {
-      removeErrorValidationStyleForCard();
+      removeErrorValidationStyleForCard(this);
       jQuery('.mdc-card-number-img').addClass('display-none');
       return;
     } else {
@@ -16812,32 +16812,38 @@ try {
 } catch (e) {
 }
 
-function addErrorValidationStyleForCard() {
+function addErrorValidationStyleForCard(ele) {
+  ele.setCustomValidity("error");
   jQuery('.mdc-card-number-icon').removeClass('display-none');
   jQuery('.mdc-card-number-img').addClass('display-none');
 }
 
-function removeErrorValidationStyleForCard() {
+function removeErrorValidationStyleForCard(ele) {
+  ele.setCustomValidity("");
   jQuery('.mdc-card-number-icon').addClass('display-none');
   jQuery('.mdc-card-number-img').removeClass('display-none');
 }
 
-function addErrorValidationStyleForExpiry() {
+function addErrorValidationStyleForExpiry(ele) {
+  ele.setCustomValidity("error");
   jQuery('.mdc-expiry-date-icon').removeClass('display-none');
   jQuery('.mdc-expiry-date').addClass('mdc-text-field--invalid')
 }
 
-function removeErrorValidationStyleForExpiry() {
+function removeErrorValidationStyleForExpiry(ele) {
+  ele.setCustomValidity("");
   jQuery('.mdc-expiry-date-icon').addClass('display-none');
   jQuery('.mdc-expiry-date').removeClass('mdc-text-field--invalid')
 }
 
-function addErrorValidationStyleForSecurityCode() {
+function addErrorValidationStyleForSecurityCode(ele) {
+  ele.setCustomValidity("error");
   jQuery('.mdc-security-code-icon').removeClass('display-none');
   jQuery('.mdc-security-code').addClass('mdc-text-field--invalid')
 }
 
-function removeErrorValidationStyleForSecurityCode() {
+function removeErrorValidationStyleForSecurityCode(ele) {
+  ele.setCustomValidity("");
   jQuery('.mdc-security-code-icon').addClass('display-none');
   jQuery('.mdc-security-code').removeClass('mdc-text-field--invalid')
 }
@@ -16847,16 +16853,16 @@ jQuery.validator.addMethod('card-holder', function(value, element) {
 }, 'Please enter a valid card holder name');
 
 jQuery.validator.addMethod('card-number', function(value, element) {
-  removeErrorValidationStyleForCard();
+  removeErrorValidationStyleForCard(element);
   var isValidCardNumber = jQuery.payment.validateCardNumber(value);
   if (!isValidCardNumber) {
-    addErrorValidationStyleForCard();
+    addErrorValidationStyleForCard(element);
   }
   return isValidCardNumber;
 }, 'Please enter a valid card number');
 
-jQuery.validator.addMethod('card-type', function(cardNumber) {
-  removeErrorValidationStyleForCard();
+jQuery.validator.addMethod('card-type', function(cardNumber, element) {
+  removeErrorValidationStyleForCard(element);
 
   var types = _.map(jQuery("#card_types").val().split(","), function(type) {
     return type.toLowerCase();
@@ -16866,14 +16872,14 @@ jQuery.validator.addMethod('card-type', function(cardNumber) {
   var isValid = _.contains(types, cardType);
 
   if (!isValid) {
-    addErrorValidationStyleForCard();
+    addErrorValidationStyleForCard(element);
   }
 
   return isValid;
 }, 'This card type is not supported');
 
 jQuery.validator.addMethod('security-code', function(value, element) {
-  removeErrorValidationStyleForSecurityCode();
+  removeErrorValidationStyleForSecurityCode(element);
   if (!jQuery(element).prop('required')) {
     return true;
   }
@@ -16885,7 +16891,7 @@ jQuery.validator.addMethod('security-code', function(value, element) {
 
   var isValid = (value.length == expectedLength);
   if (!isValid) {
-    addErrorValidationStyleForSecurityCode();
+    addErrorValidationStyleForSecurityCode(element);
   }
 
   return isValid;
@@ -16906,7 +16912,7 @@ jQuery.validator.addMethod('validate-expiry-date', function(value, element) {
 }, CARD_HAS_EXPIRED);
 
 jQuery.validator.addMethod('expiry-date', function(value, element) {
-  removeErrorValidationStyleForExpiry();
+  removeErrorValidationStyleForExpiry(element);
   var parts = value.split('/');
   var validExp = function(month, year) {
     var currentTime, expiry, _ref;
@@ -16949,7 +16955,7 @@ jQuery.validator.addMethod('expiry-date', function(value, element) {
   };
   var isValid = validExp(parts[0], parts[1]);
   if (!isValid) {
-    addErrorValidationStyleForExpiry();
+    addErrorValidationStyleForExpiry(element);
   }
 
   return true;

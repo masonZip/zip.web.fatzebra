@@ -142,12 +142,13 @@
                 </div>
                 <div class="control-group payment_form-mh">
                   <div class="two-column-row">
-                    <div id="expiry-date">
+                    <div>
                       <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon mdc-expiry-date">
                         <input
                           type="text"
+                          required
                           class="expiry-date mdc-text-field__input"
-                          data-mask="99/999?9?"
+                          onfocus="this.placeholder='MM/YYYY'"
                           autocomplete="cc-exp"
                           name="payment_request[expiry_date]"
                           id="payment_request_expiry_date"
@@ -165,10 +166,11 @@
                         <div class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg mdc-expiry-date-text">Valid date required</div>
                       </div>
                     </div>
-                    <div id="security-code">
+                    <div>
                       <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon mdc-security-code">
                         <input
                           type="text"
+                          required
                           onfocus="this.placeholder='3 digit code'"
                           class="number security-code mdc-text-field__input"
                           autocomplete="cc-csc"

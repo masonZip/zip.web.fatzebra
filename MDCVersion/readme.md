@@ -37,10 +37,26 @@ jQuery.validator.addMethod('card-type'
 
 Some input has Data mask plugin
 https://github.com/digitalBush/jquery.maskedinput
+The data mask place holder will cause conflict between MDC text field. Below code will set placeholder inside input, then the floating text is auto set.
+```
+<input
+  type="text"
+  class="expiry-date mdc-text-field__input"
+  data-mask="99/999?9?"
 
-The validation on Card Number input is an working example, once validation set invalid = false, the MDC error style should be triggered.
+jQuery('[data-mask]').each(function() {
+    jQuery(this).mask(jQuery(this).data('mask'), {autoclear: false, placeholder: "MM/YYYY"});
+  });
+```
+Replaced it with
+```
+onfocus="this.placeholder='MM/YYYY'"
+```
 
-Expiry and CVV fields seems to have something tricky happens. After customized validation invalid the element, somewhere the invalid will be set to true again.
+After customized validation invalid the element, we need to use to invalid/valid the input for MDC, then MDC component will add validation style on it.
+```
+ele.setCustomValidity("error");
+```
 
 e.g.
 Expiry input has class="expiry-date", which will add a validation method in jQuery.Validator
@@ -48,13 +64,13 @@ Expiry input has class="expiry-date", which will add a validation method in jQue
 jQuery.validator.addMethod('expiry-date', function(value, element) {
 ```
 
-Inside that function, we will call removeErrorValidationStyleForExpiry() first
-Then, depends on valid result to call addErrorValidationStyleForExpiry()
+Inside that function, we will call removeErrorValidationStyleForExpiry(element) first
+Then, depends on valid result to call addErrorValidationStyleForExpiry(element)
 
 ```
 var isValid = validExp(parts[0], parts[1]);
   if (!isValid) {
-    addErrorValidationStyleForExpiry();
+    addErrorValidationStyleForExpiry(element);
   }
 
 return true;
