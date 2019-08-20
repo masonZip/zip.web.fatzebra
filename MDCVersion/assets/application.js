@@ -16464,8 +16464,24 @@ jQuery(function() {
     jQuery('.surcharge-enabled').removeClass('display-none');
   };
 
+  var formatCardNumberForDisplay = function(cardNumber) {
+    var split = 4;
+    var chunk = [];
+
+    for (var i = 0, len = cardNumber.length; i < len; i += split) {
+        split = ( i >= 8 && i <= 16 ) ? 4 : 8;
+        chunk.push(cardNumber.substr( i, split ) );
+    }
+
+    jQuery('.card-number').val(function() {
+        return chunk.join(" ");
+    });
+  }
+
   var getApplicableSurcharge = function() {
-    var cardNumber = jQuery('.card-number').first().val().replace(/\s/g, '').slice(0, 6);
+    var cardNumber = jQuery('.card-number').first().val();
+    formatCardNumberForDisplay(cardNumber);
+    var cardNumber = cardNumber.replace(/\s/g, '').slice(0, 6);
     if (cardNumber.length < 6) {
       hideSurchargeDetails();
       return;
@@ -16848,11 +16864,25 @@ function removeErrorValidationStyleForSecurityCode(ele) {
   jQuery('.mdc-security-code').removeClass('mdc-text-field--invalid')
 }
 
+function formatCardNumberForDisplay (cardNumber) {
+  const cardNumberNoSpace = cardNumber.replace(/\s/g, "");
+  var chunk = [];
+  for (var i = 1, len = cardNumberNoSpace.length; i <= len; i++) {
+      chunk.push(cardNumberNoSpace[i-1]);
+      if (i % 4 == 0) {
+        chunk.push(" ");
+      }
+  }
+
+  return chunk.join("").trim();
+}
+
 jQuery.validator.addMethod('card-holder', function(value, element) {
   return /^[a-z\d\.\-&\s']{1,50}$/i.test(value);
 }, 'Please enter a valid card holder name');
 
 jQuery.validator.addMethod('card-number', function(value, element) {
+  element.value = formatCardNumberForDisplay(value);
   removeErrorValidationStyleForCard(element);
   var isValidCardNumber = jQuery.payment.validateCardNumber(value);
   if (!isValidCardNumber) {

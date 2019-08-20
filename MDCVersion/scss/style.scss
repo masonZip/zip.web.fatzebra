@@ -44,6 +44,27 @@
   margin-bottom: 13px
 }
 
+// Overwrite MDC default style
+// Input text color
+.mdc-text-field:not(.mdc-text-field--focused) {
+  @include mdc-text-field-ink-color(#6e7396);
+  @include mdc-text-field-label-color(#6e7396)
+}
+
+.mdc-text-field.mdc-text-field--focused {
+  @include mdc-text-field-ink-color(#21285e);
+  @include mdc-text-field-label-color(#1c70f2)
+}
+
+.mdc-text-field.mdc-text-field--invalid {
+  @include mdc-text-field-label-color(#b00002)
+}
+
+.mdc-text-field {
+  @include mdc-text-field-focused-outline-color(#1c70f2);
+  @include mdc-text-field-outline-color(#dddde3)
+}
+
 // Updated original style
 .control-group {
   margin-bottom: 32px
