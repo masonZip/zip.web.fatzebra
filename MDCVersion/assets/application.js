@@ -16352,9 +16352,28 @@ var visa_checkout_error = function (payment, error) {
   jQuery("#custom-visa-checkout-outer-container").after("<p>Visa Checkout payment failed due to an error. Please complete the checkout process with your credit card details.</p>");
 };
 
+var formatDataWithDataMask = function(dateVal) {
+  if (!dateVal) return dateVal;
+
+  var formattedValue = '';
+  for (var i = 0; i < dateVal.length; i++) {
+    if (i == 2 && dateVal[i] != '/') {
+      formattedValue += '/';
+    }
+    formattedValue += dateVal[i];
+  }
+
+  if (formattedValue.length < 7) {
+    formattedValue += '__/____'.substring(dateVal.length, 7);
+  }
+  console.log('formattedValue ' + formattedValue);
+  return formattedValue;
+}
+
 var formatExpiryDate;
 
-formatExpiryDate = function(dateVal) {
+formatExpiryDate = function(dateValue) {
+  const dateVal = formatDataWithDataMask(dateValue);
   var month, parts, year;
   if (dateVal === "") {
     return "";
@@ -16389,6 +16408,16 @@ jQuery(function() {
   jQuery('#payment_request_expiry_date').on('blur', function() {
     jQuery(this).val(formatExpiryDate(jQuery(this).val()));
   });
+
+  jQuery('#payment_request_card_holder').on('blur', function() {
+    const element = this;
+    removeErrorValidationStyleForCardHolder(element);
+    const isValid = /^[a-z\d\.\-&\s']{1,50}$/i.test(element.value);
+    if (!isValid) {
+      addErrorValidationStyleForCardHolder(element);
+    }
+  });
+
   initMasks();
 
   jQuery(".card-number-logo").on('keyup', function() {
@@ -16864,6 +16893,18 @@ function removeErrorValidationStyleForSecurityCode(ele) {
   jQuery('.mdc-security-code').removeClass('mdc-text-field--invalid')
 }
 
+function addErrorValidationStyleForCardHolder(ele) {
+  ele.setCustomValidity("error");
+  jQuery('.mdc-card-holder-icon').removeClass('display-none');
+  jQuery('.mdc-card-holder').addClass('mdc-text-field--invalid')
+}
+
+function removeErrorValidationStyleForCardHolder(ele) {
+  ele.setCustomValidity("");
+  jQuery('.mdc-card-holder-icon').addClass('display-none');
+  jQuery('.mdc-card-holder').removeClass('mdc-text-field--invalid')
+}
+
 function formatCardNumberForDisplay (cardNumber) {
   const cardNumberNoSpace = cardNumber.replace(/\s/g, "");
   var chunk = [];
@@ -16878,7 +16919,12 @@ function formatCardNumberForDisplay (cardNumber) {
 }
 
 jQuery.validator.addMethod('card-holder', function(value, element) {
-  return /^[a-z\d\.\-&\s']{1,50}$/i.test(value);
+  removeErrorValidationStyleForCardHolder(element);
+  const isValid = /^[a-z\d\.\-&\s']{1,50}$/i.test(value);
+  if (!isValid) {
+    addErrorValidationStyleForCardHolder(element);
+  }
+  return isValid;
 }, 'Please enter a valid card holder name');
 
 jQuery.validator.addMethod('card-number', function(value, element) {

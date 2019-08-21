@@ -91,9 +91,10 @@
               <fieldset>
                 <div class="control-group">
                   <div class="controls control-container">
-                    <div class="mdc-text-field mdc-text-field--outlined mdc-card-holder">
+                    <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon mdc-card-holder">
                       <input
                         type="text"
+                        required
                         class="required card-holder mdc-text-field__input"
                         autocomplete="cc-name"
                         title="Please enter a valid card holder name"
@@ -101,6 +102,7 @@
                         name="payment_request[card_holder]"
                         id="payment_request_card_holder"
                       />
+                      <i class="material-icons mdc-text-field__icon mdc-card-holder-icon display-none">info_outline</i>
                       <div class="mdc-notched-outline">
                         <div class="mdc-notched-outline__leading"></div>
                         <div class="mdc-notched-outline__notch">
@@ -109,6 +111,9 @@
                         <div class="mdc-notched-outline__trailing"></div>
                       </div>
                     </div>
+                    <div class="mdc-text-field-helper-line">
+                      <div class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg mdc-card-holder-help-text">Card holder name is required</div>
+                    </div>
                   </div>
                 </div>
                 <div class="control-group-card">
@@ -116,6 +121,7 @@
                     <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon mdc-card-number">
                       <input
                         type="text"
+                        required
                         class="required card-type card-number card-number-logo mdc-text-field__input"
                         autocomplete="cc-number"
                         minlength="13"
