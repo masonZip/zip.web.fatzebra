@@ -17149,6 +17149,32 @@ jQuery(function () {
 
       // container.fadeIn();
 
+      removeErrorValidationStyleForCardHolder($('[name="payment_request[card_holder]"]')[0]);
+      removeErrorValidationStyleForCard($('[name="payment_request[card_number]"]')[0]);
+      removeErrorValidationStyleForExpiry($('[name="payment_request[expiry_date]"]')[0]);
+      removeErrorValidationStyleForSecurityCode($('[name="payment_request[security_code]"]')[0
+      _.each(errList, function (err) {
+        console.log('err', err);
+        if (err.element) {
+          var errorElement = $('[name="' + err.element.name + '"]')[0];
+
+          switch (err.element.name) {
+            case 'payment_request[card_holder]':
+              addErrorValidationStyleForCardHolder(errorElement);
+              break;
+            case 'payment_request[card_number]':
+              addErrorValidationStyleForCard(errorElement);
+              break;
+            case 'payment_request[expiry_date]':
+              addErrorValidationStyleForExpiry(errorElement);
+              break;
+            case 'payment_request[security_code]':
+              addErrorValidationStyleForSecurityCode(errorElement);
+              break;
+          }
+        }
+      });
+
       // Send errors via PostMessage
       window.sendPostMessage(
               "message=form.invalid&errors=" + allErrs.join(", "),
