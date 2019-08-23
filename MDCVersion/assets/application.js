@@ -16352,28 +16352,9 @@ var visa_checkout_error = function (payment, error) {
   jQuery("#custom-visa-checkout-outer-container").after("<p>Visa Checkout payment failed due to an error. Please complete the checkout process with your credit card details.</p>");
 };
 
-var formatDataWithDataMask = function(dateVal) {
-  if (!dateVal) return dateVal;
-
-  var formattedValue = '';
-  for (var i = 0; i < dateVal.length; i++) {
-    if (i == 2 && dateVal[i] != '/') {
-      formattedValue += '/';
-    }
-    formattedValue += dateVal[i];
-  }
-
-  if (formattedValue.length < 7) {
-    formattedValue += '__/____'.substring(dateVal.length, 7);
-  }
-  console.log('formattedValue ' + formattedValue);
-  return formattedValue;
-}
-
 var formatExpiryDate;
 
-formatExpiryDate = function(dateValue) {
-  const dateVal = formatDataWithDataMask(dateValue);
+formatExpiryDate = function(dateVal) {
   var month, parts, year;
   if (dateVal === "") {
     return "";
@@ -16399,8 +16380,12 @@ formatExpiryDate = function(dateValue) {
 };
 
 var initMasks = function() {
-  jQuery('[data-mask]').each(function() {
-    jQuery(this).mask(jQuery(this).data('mask'), {autoclear: false, placeholder: "MM/YYYY"});
+  // jQuery('[data-mask]').each(function() {
+  //   jQuery(this).mask(jQuery(this).data('mask'), {autoclear: false, placeholder: "MM/YYYY"});
+  // });
+
+  jQuery('#payment_request_expiry_date').on('focusin', function() {
+    jQuery(this).mask('99/999?9?', {autoclear: false, placeholder: "MM/YYYY"});
   });
 }
 
@@ -16444,6 +16429,8 @@ jQuery(function() {
         case 'mastercard':
           jQuery('.mdc-card-number-icon__img')[0].src = '/assets/card-mastercard-48906597ac2007ce69cbe6d3a5928e801c83866376b8f881263872a9a978a6b8.svg';
           break
+        default:
+          addErrorValidationStyleForCard(this, 'This card type is not supported');
       }
     }
     if (acceptedTypes.indexOf(type) < 0) return;
@@ -16857,10 +16844,12 @@ try {
 } catch (e) {
 }
 
-function addErrorValidationStyleForCard(ele) {
+function addErrorValidationStyleForCard(ele, text) {
+  jQuery('.mdc-card-help-text').text(text || 'Please enter a valid card number');
   ele.setCustomValidity("error");
   jQuery('.mdc-card-number-icon').removeClass('display-none');
   jQuery('.mdc-card-number-img').addClass('display-none');
+  jQuery('.mdc-card-number').addClass('mdc-text-field--invalid')
 }
 
 function removeErrorValidationStyleForCard(ele) {
@@ -16928,11 +16917,12 @@ jQuery.validator.addMethod('card-holder', function(value, element) {
 }, 'Please enter a valid card holder name');
 
 jQuery.validator.addMethod('card-number', function(value, element) {
+  if (element.isValid === false) return element.isValid;
   element.value = formatCardNumberForDisplay(value);
   removeErrorValidationStyleForCard(element);
   var isValidCardNumber = jQuery.payment.validateCardNumber(value);
   if (!isValidCardNumber) {
-    addErrorValidationStyleForCard(element);
+    addErrorValidationStyleForCard(element, 'Card holder name is required');
   }
   return isValidCardNumber;
 }, 'Please enter a valid card number');
@@ -17149,10 +17139,6 @@ jQuery(function () {
 
       // container.fadeIn();
 
-      removeErrorValidationStyleForCardHolder($('[name="payment_request[card_holder]"]')[0]);
-      removeErrorValidationStyleForCard($('[name="payment_request[card_number]"]')[0]);
-      removeErrorValidationStyleForExpiry($('[name="payment_request[expiry_date]"]')[0]);
-      removeErrorValidationStyleForSecurityCode($('[name="payment_request[security_code]"]')[0
       _.each(errList, function (err) {
         console.log('err', err);
         if (err.element) {
@@ -17163,7 +17149,7 @@ jQuery(function () {
               addErrorValidationStyleForCardHolder(errorElement);
               break;
             case 'payment_request[card_number]':
-              addErrorValidationStyleForCard(errorElement);
+              addErrorValidationStyleForCard(errorElement, err.message);
               break;
             case 'payment_request[expiry_date]':
               addErrorValidationStyleForExpiry(errorElement);

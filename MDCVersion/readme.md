@@ -41,15 +41,16 @@ style.scss new style, also included some old style overwrite
 ```
 
 ### Validation wire up
-Exisiting validation uses https://jqueryvalidation.org/documentation/
+* Exisiting validation uses https://jqueryvalidation.org/documentation/
 
 Customized validation method is added via below style in application.js, build output from Fatzebra's existing system
 ```
 jQuery.validator.addMethod('card-type'
 ```
 
-Some input has Data mask plugin
+* Some input has Data mask plugin
 https://github.com/digitalBush/jquery.maskedinput
+
 The data mask place holder will cause conflict between MDC text field. Below code will set placeholder inside input, then the floating text is auto set.
 ```
 <input
@@ -61,14 +62,20 @@ jQuery('[data-mask]').each(function() {
     jQuery(this).mask(jQuery(this).data('mask'), {autoclear: false, placeholder: "MM/YYYY"});
   });
 ```
-Replaced it with
+Remove the data-mask attribute and initiate mask when focusin
 ```
-onfocus="this.placeholder='MM/YYYY'"
+jQuery('#payment_request_expiry_date').on('focusin', function() {
+  jQuery(this).mask('99/999?9?', {autoclear: false, placeholder: "MM/YYYY"});
+});
 ```
+
+* Add validation style
 
 After customized validation invalid the element, we need to use to invalid/valid the input for MDC, then MDC component will add validation style on it.
 ```
 ele.setCustomValidity("error");
+
+jQuery('.mdc-card-holder').addClass('mdc-text-field--invalid')
 ```
 
 e.g.
@@ -89,7 +96,24 @@ var isValid = validExp(parts[0], parts[1]);
 return true;
 ```
 
-I think this might be reset by jQuery validation rules afterwards
+* To specify different error message for card number
+```
+switch (type)
+  {
+    case 'visa':
+      jQuery('.mdc-card-number-icon__img')[0].src = '/assets/card-visa-5f8a240d56bca7d914a57f03c7a3be261cae8ee1ef43f444e181a4d1cb47a962.svg';
+      break;
+    case 'mastercard':
+      jQuery('.mdc-card-number-icon__img')[0].src = '/assets/card-mastercard-48906597ac2007ce69cbe6d3a5928e801c83866376b8f881263872a9a978a6b8.svg';
+      break
+    default:
+      addErrorValidationStyleForCard(this, 'This card type is not supported');
+  }
+```
+
+* Below is the place where form validation rules get added in
+
+The rule will get triggered when fields lost focus or during form.valid().
 ```
   jQuery("form").validate({
     ignore: ':hidden',
@@ -107,3 +131,10 @@ I think this might be reset by jQuery validation rules afterwards
       }
     },
 ```
+ e.g.
+ ```
+showError   // called by field lost focus
+card-number // called by customer validate method
+card-holder // called by customer validate method
+showError   // called again by form.valid()
+ ```
