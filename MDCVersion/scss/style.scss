@@ -7,33 +7,27 @@
 }
 
 .form-wrapper {
-  padding: 32px;
-  max-width: 350px;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 550px;
 }
 
-#payment_request_card_holder,
-#payment_request_card_number {
-  min-width: 350px;
-}
-
-#payment_request_expiry_date,
-#payment_request_security_code {
-  width: 160px !important;
+.mdc-card-holder,
+.mdc-card-number {
+  width: 100%;
 }
 
 .two-column-row {
   display: flex;
-  width: 350px;
   justify-content: space-between;
 }
 
-.control-container {
-  text-align: center;
+.mdc-split {
+  min-width: 8px;
 }
 
-.control-container-flex {
-  display: flex;
-  justify-content: center;
+.control-container {
+  width: 100%;
 }
 
 .mdc-card-number-icon__img {
@@ -48,22 +42,30 @@
 // Overwrite MDC default style
 // Input text color
 .mdc-text-field:not(.mdc-text-field--focused) {
-  @include mdc-text-field-ink-color(#6e7396);
-  @include mdc-text-field-label-color(#6e7396)
+  @include mdc-text-field-label-color(#6e7396);
 }
 
 .mdc-text-field.mdc-text-field--focused {
   @include mdc-text-field-ink-color(#21285e);
-  @include mdc-text-field-label-color(#1c70f2)
+  @include mdc-text-field-label-color(#1c70f2);
 }
 
 .mdc-text-field.mdc-text-field--invalid {
-  @include mdc-text-field-label-color(#b00002)
+  @include mdc-text-field-label-color(#b00002);
 }
 
 .mdc-text-field {
   @include mdc-text-field-focused-outline-color(#1c70f2);
-  @include mdc-text-field-outline-color(#dddde3)
+  @include mdc-text-field-outline-color(#dddde3);
+}
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused) .mdc-text-field__input:hover ~ .mdc-notched-outline .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused) .mdc-text-field__input:hover ~ .mdc-notched-outline .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused) .mdc-text-field__input:hover ~ .mdc-notched-outline .mdc-notched-outline__trailing,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused) .mdc-text-field__icon:hover ~ .mdc-notched-outline .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused) .mdc-text-field__icon:hover ~ .mdc-notched-outline .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused) .mdc-text-field__icon:hover ~ .mdc-notched-outline .mdc-notched-outline__trailing {
+  border-color: #a5abc1;
 }
 
 // Updated original style

@@ -16403,6 +16403,20 @@ jQuery(function() {
     }
   });
 
+  jQuery('#payment_request_card_number').on('blur', function() {
+    const element = this;
+    if (element.value == '') {
+      addErrorValidationStyleForCard(element);
+    }
+  });
+
+  jQuery('#payment_request_security_code').on('blur', function() {
+    const element = this;
+    if (element.value == '') {
+      addErrorValidationStyleForSecurityCode(element);
+    }
+  });
+
   initMasks();
 
   jQuery(".card-number-logo").on('keyup', function() {
