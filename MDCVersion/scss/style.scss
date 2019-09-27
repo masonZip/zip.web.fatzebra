@@ -43,11 +43,17 @@
 // Input text color
 .mdc-text-field:not(.mdc-text-field--focused) {
   @include mdc-text-field-label-color(#6e7396);
+  @include mdc-text-field-ink-color(#21285e);
 }
 
 .mdc-text-field.mdc-text-field--focused {
   @include mdc-text-field-ink-color(#21285e);
   @include mdc-text-field-label-color(#1c70f2);
+  @include mdc-text-field-caret-color(#1c70f2);
+}
+
+.mdc-text-field.mdc-text-field--focused .mdc-text-field__input:required ~ .mdc-notched-outline .mdc-floating-label::after {
+  color: #1c70f2;
 }
 
 .mdc-text-field.mdc-text-field--invalid {
