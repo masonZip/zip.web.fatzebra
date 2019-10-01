@@ -16379,19 +16379,36 @@ formatExpiryDate = function(dateVal) {
   return month + "/" + year;
 };
 
+var placeholderText = 'MM/YYYY';
+var setPlaceHolderClass = function(ele, placeholderText) {
+  if (ele && ele.val() === placeholderText) {
+    ele.addClass('grey-placeholder');
+  } else {
+    ele.removeClass('grey-placeholder');
+  }
+};
 var initMasks = function() {
   // jQuery('[data-mask]').each(function() {
   //   jQuery(this).mask(jQuery(this).data('mask'), {autoclear: false, placeholder: "MM/YYYY"});
   // });
 
   jQuery('#payment_request_expiry_date').on('focusin', function() {
-    jQuery(this).mask('99/999?9?', {autoclear: false, placeholder: "MM/YYYY"});
+    var ele = jQuery(this);
+    ele.mask('99/999?9?', {autoclear: false, placeholder: placeholderText});
+    setPlaceHolderClass(ele, placeholderText);
+  });
+
+  jQuery('#payment_request_expiry_date').on('keyup', function() {
+    var ele = jQuery(this);
+    setPlaceHolderClass(ele, placeholderText);
   });
 }
 
 jQuery(function() {
   jQuery('#payment_request_expiry_date').on('blur', function() {
-    jQuery(this).val(formatExpiryDate(jQuery(this).val()));
+    var ele = jQuery(this);
+    ele.val(formatExpiryDate(jQuery(this).val()));
+    setPlaceHolderClass(ele, placeholderText);
   });
 
   jQuery('#payment_request_card_holder').on('blur', function() {
