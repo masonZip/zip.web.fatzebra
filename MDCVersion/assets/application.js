@@ -17055,7 +17055,7 @@ jQuery.validator.addMethod('expiry-date', function(value, element) {
     addErrorValidationStyleForExpiry(element);
   }
 
-  return true;
+  return isValid;
 }, 'Please enter a valid expiry date');
 
 jQuery(function () {
